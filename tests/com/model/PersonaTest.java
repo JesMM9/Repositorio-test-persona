@@ -1,7 +1,8 @@
 package com.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,9 @@ class PersonaTest {
 	private static Persona persona3;
 	private static Persona persona4;
 	private static Persona persona5;
+	private static Persona personaInfra;
+	private static Persona personaSobre;
+	private static Persona personaAlturaNeg;
 	
 	@BeforeAll
 	public static void setup() {
@@ -21,6 +25,9 @@ class PersonaTest {
 		persona3=new Persona("Jesús", 18, 'H', 80, 1.9);
 		persona4=new Persona("Hola", 2, 'M');
 		persona5=new Persona("Adiós", 4, 'J');
+		personaInfra=new Persona(null, 0, 'J', 12, 1.6);
+		personaSobre=new Persona(null, 0, 'J', 160, 1.6);
+		personaAlturaNeg=new Persona(null, 0, 'J', 0, -1);
 	}
 
 	@Test
@@ -83,17 +90,46 @@ class PersonaTest {
 
 	@Test
 	void testCalcularIMC() {
-		fail("Not yet implemented");
+		assertEquals(0,persona3.calcularIMC());
+		assertEquals(-1,personaInfra.calcularIMC());
+		assertEquals(1,personaSobre.calcularIMC());
 	}
 
 	@Test
 	void testEsMayorDeEdad() {
-		fail("Not yet implemented");
+		assertTrue(persona3.esMayorDeEdad());
+		assertTrue(persona2.esMayorDeEdad());
+		assertFalse(persona4.esMayorDeEdad());
 	}
 
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		assertEquals("Informacion de la persona:\n"
+
+                + "Nombre: " + persona3.getNombre() + "\n"
+
+                + "Sexo: " + "hombre" + "\n"
+
+                + "Edad: " + persona3.getEdad() + " años\n"
+
+                + "DNI: " + persona3.getDNI() + "\n"
+
+                + "Peso: " + persona3.getPeso() + " kg\n"
+
+                + "Altura: " + persona3.getAltura() + " metros\n",persona3.toString());
+		assertEquals("Informacion de la persona:\n"
+
+                + "Nombre: " + persona4.getNombre() + "\n"
+
+                + "Sexo: " + "mujer" + "\n"
+
+                + "Edad: " + persona4.getEdad() + " años\n"
+
+                + "DNI: " + persona4.getDNI() + "\n"
+
+                + "Peso: " + persona4.getPeso() + " kg\n"
+
+                + "Altura: " + persona4.getAltura() + " metros\n",persona4.toString());
 	}
 
 }

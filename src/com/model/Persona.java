@@ -42,7 +42,11 @@ public class Persona {
 
         this.peso = peso;
 
-        this.altura = altura;
+        if (!(altura<0)) {
+        	this.altura = altura;
+        }else {
+        	this.altura=0;
+        }
 
         generarDni();
 
